@@ -1,10 +1,13 @@
-package com.repkap11.fractivity;
+package com.repkap11.fractivity.tests;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.repkap11.fractivity.Fractivity;
+import com.repkap11.fractivity.R;
 
 public class TestFractivity extends Fractivity {
     private TestFractivityFragment mTestFragment;
