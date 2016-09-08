@@ -9,11 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class Fractivity extends AppCompatActivity {
+public abstract class Fractivity<FragType extends Fractivity.FractivityFragment> extends AppCompatActivity {
 
     private static final String INSTANCE_STATE_FRAGMENT = "INSTANCE_STATE_FRAGMENT";
     private static final String TAG = Fractivity.class.getSimpleName();
-    private FractivityFragment mFragment;
+    private FragType mFragment;
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public abstract class Fractivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             mFragment = createFragment(savedInstanceState);
         } else {
-            mFragment = (FractivityFragment) getSupportFragmentManager().getFragment(savedInstanceState, INSTANCE_STATE_FRAGMENT);
+            mFragment = (FragType) getSupportFragmentManager().getFragment(savedInstanceState, INSTANCE_STATE_FRAGMENT);
         }
         if (mFragment == null) {
             Log.e(TAG, "Fragment Null");
@@ -31,7 +31,7 @@ public abstract class Fractivity extends AppCompatActivity {
         fragmentCreated(mFragment);
     }
 
-    protected abstract void fragmentCreated(FractivityFragment fractivityFragment);
+    protected abstract void fragmentCreated(FragType fractivityFragment);
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -41,7 +41,7 @@ public abstract class Fractivity extends AppCompatActivity {
 
     }
 
-    protected abstract FractivityFragment createFragment(Bundle savedInstanceState);
+    protected abstract FragType createFragment(Bundle savedInstanceState);
 
     public static abstract class FractivityFragment extends Fragment {
         public FractivityFragment() {

@@ -11,10 +11,10 @@ import com.repkap11.fractivity.R;
 /**
  * Created by paul on 2/16/16.
  */
-public class TestFractivityAdapter extends BaseAdapter {
+public class TestAdapter extends BaseAdapter {
     private final TestAdapterFractivity.TestAdapterFractivityFragment mFragment;
 
-    public TestFractivityAdapter(TestAdapterFractivity.TestAdapterFractivityFragment testAdapterFractivityFragment) {
+    public TestAdapter(TestAdapterFractivity.TestAdapterFractivityFragment testAdapterFractivityFragment) {
         mFragment = testAdapterFractivityFragment;
     }
 

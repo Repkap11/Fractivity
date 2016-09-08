@@ -9,22 +9,21 @@ import android.widget.TextView;
 import com.repkap11.fractivity.Fractivity;
 import com.repkap11.fractivity.R;
 
-public class TestFractivity extends Fractivity {
+public class TestFractivity extends Fractivity<TestFractivity.TestFractivityFragment> {
     private TestFractivityFragment mTestFragment;
 
     @Override
-    protected void fragmentCreated(FractivityFragment fractivityFragment) {
-        mTestFragment = (TestFractivityFragment) fractivityFragment;
+    protected void fragmentCreated(TestFractivityFragment fractivityFragment) {
+        mTestFragment = fractivityFragment;
     }
 
     @Override
-    protected FractivityFragment createFragment(Bundle savedInstanceState) {
-        FractivityFragment fragment = new TestFractivityFragment();
+    protected TestFractivityFragment createFragment(Bundle savedInstanceState) {
         //use the bundle to create the fragment
-        return fragment;
+        return new TestFractivityFragment();
     }
 
-    public static final class TestFractivityFragment extends FractivityFragment {
+    public static final class TestFractivityFragment extends Fractivity.FractivityFragment {
         int mPersistingVar = 0;
 
         @Override
