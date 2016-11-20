@@ -13,7 +13,7 @@ public abstract class Fractivity<FragType extends Fractivity.FractivityFragment>
 
     private static final String INSTANCE_STATE_FRAGMENT = "INSTANCE_STATE_FRAGMENT";
     private static final String TAG = Fractivity.class.getSimpleName();
-    private FragType mFragment;
+    protected FragType mFragment;
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,7 @@ public abstract class Fractivity<FragType extends Fractivity.FractivityFragment>
             Log.e(TAG, "Fragment Null");
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fractivity_view, mFragment, INSTANCE_STATE_FRAGMENT).commitAllowingStateLoss();
-        fragmentCreated(mFragment);
     }
-
-    protected abstract void fragmentCreated(FragType fractivityFragment);
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -63,7 +60,14 @@ public abstract class Fractivity<FragType extends Fractivity.FractivityFragment>
             return createView(inflater, container, savedInstanceState);
         }
 
+        @Override
+        public void onDestroyView() {
+            destroyView();
+            super.onDestroyView();
+        }
+
         protected abstract View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+        protected abstract void destroyView();
     }
 
 

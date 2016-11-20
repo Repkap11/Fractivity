@@ -9,11 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".tests.TestFractivity" />
-        <activity android:name=".tests.TestAdapterFractivity" />
+        <activity android:name=".tests.AdapterFractivity" />
 
         <activity-alias
             android:name=".Launcher"
-            android:targetActivity=".tests.TestAdapterFractivity">
+            android:targetActivity=".tests.AdapterFractivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

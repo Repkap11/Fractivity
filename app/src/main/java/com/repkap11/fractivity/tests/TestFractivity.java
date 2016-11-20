@@ -10,12 +10,6 @@ import com.repkap11.fractivity.Fractivity;
 import com.repkap11.fractivity.R;
 
 public class TestFractivity extends Fractivity<TestFractivity.TestFractivityFragment> {
-    private TestFractivityFragment mTestFragment;
-
-    @Override
-    protected void fragmentCreated(TestFractivityFragment fractivityFragment) {
-        mTestFragment = fractivityFragment;
-    }
 
     @Override
     protected TestFractivityFragment createFragment(Bundle savedInstanceState) {
@@ -43,6 +37,11 @@ public class TestFractivity extends Fractivity<TestFractivity.TestFractivityFrag
             return rootView;
         }
 
+        @Override
+        protected void destroyView() {
+            mTextView = null;
+        }
+
         public void incrementCounter() {
             mPersistingVar += 1;
             mTextView.setText("" + mPersistingVar);
@@ -51,6 +50,6 @@ public class TestFractivity extends Fractivity<TestFractivity.TestFractivityFrag
 
     @Override
     public void onBackPressed() {
-        mTestFragment.incrementCounter();
+        mFragment.incrementCounter();
     }
 }

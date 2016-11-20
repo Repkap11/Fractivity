@@ -8,19 +8,26 @@ import android.widget.TextView;
 
 import com.repkap11.fractivity.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by paul on 2/16/16.
  */
 public class TestAdapter extends BaseAdapter {
-    private final TestAdapterFractivity.TestAdapterFractivityFragment mFragment;
+    private final AdapterFractivity.AdapterFractivityFragment mFragment;
+    private List<String> mStrings;
 
-    public TestAdapter(TestAdapterFractivity.TestAdapterFractivityFragment testAdapterFractivityFragment) {
+    public TestAdapter(AdapterFractivity.AdapterFractivityFragment testAdapterFractivityFragment) {
         mFragment = testAdapterFractivityFragment;
+        mStrings = new ArrayList<>();
+        TestAsyncDownloader downloader = new TestAsyncDownloader(this);
+        downloader.execute(42);
     }
 
     @Override
     public int getCount() {
-        return 100;
+        return mStrings.size();
     }
 
     @Override
@@ -44,10 +51,15 @@ public class TestAdapter extends BaseAdapter {
         } else {
             holder = (Holder) convertView.getTag();
         }
-        holder.mName.setText(position + "");
+        holder.mName.setText(mStrings.get(position));
         holder.mIndex = position;
 
         return convertView;
+    }
+
+    public void onDownloadComplete(List<String> strings) {
+        mStrings = strings;
+        notifyDataSetChanged();
     }
 
     public class Holder {

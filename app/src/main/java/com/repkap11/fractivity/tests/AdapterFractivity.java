@@ -9,21 +9,15 @@ import android.widget.AbsListView;
 import com.repkap11.fractivity.Fractivity;
 import com.repkap11.fractivity.R;
 
-public class TestAdapterFractivity extends Fractivity<TestAdapterFractivity.TestAdapterFractivityFragment> {
-    private TestAdapterFractivityFragment mTestFragment;
+public class AdapterFractivity extends Fractivity<AdapterFractivity.AdapterFractivityFragment> {
 
     @Override
-    protected void fragmentCreated(TestAdapterFractivityFragment fractivityFragment) {
-        mTestFragment = fractivityFragment;
-    }
-
-    @Override
-    protected TestAdapterFractivityFragment createFragment(Bundle savedInstanceState) {
+    protected AdapterFractivityFragment createFragment(Bundle savedInstanceState) {
         //use the bundle to create the fragment
-        return new TestAdapterFractivityFragment();
+        return new AdapterFractivityFragment();
     }
 
-    public static final class TestAdapterFractivityFragment extends Fractivity.FractivityFragment {
+    public static final class AdapterFractivityFragment extends Fractivity.FractivityFragment {
         TestAdapter mAdapter;
 
         @Override
@@ -33,13 +27,17 @@ public class TestAdapterFractivity extends Fractivity<TestAdapterFractivity.Test
 
         AbsListView mListView;
 
-
         @Override
         protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fractivity_adaptertest, container, false);
             mListView = (AbsListView) rootView.findViewById(R.id.fractivity_adaptertest_list);
             mListView.setAdapter(mAdapter);
             return rootView;
+        }
+
+        @Override
+        protected void destroyView() {
+            mListView = null;
         }
     }
 }
